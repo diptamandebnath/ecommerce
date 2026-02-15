@@ -175,6 +175,9 @@ function verifyOTP(){
     document.getElementById("message").innerHTML = 
       "✅ Login Successful!";
     document.getElementById("message").style.color = "lightgreen";
+    setTimeout(function(){
+        window.location.href = "home.html"; 
+    }, 1000)
   }else{
     document.getElementById("message").innerHTML = 
       "❌ Invalid OTP!";
