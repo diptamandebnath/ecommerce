@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple E-Commerce Platform</title>
 
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f7fa;
+}
+
+header{
+    background:#1e293b;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin:20px 0;
+}
+
+.nav-buttons button{
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+    border-radius:6px;
+    background:#3b82f6;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.nav-buttons button:hover{
+    background:#2563eb;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.card h3{
+    margin:10px 0 5px;
+}
+
+.price{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.seller-rating{
+    color:#f59e0b;
+    font-weight:bold;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🛒 My E-Commerce Platform
+</header>
+
+<div class="nav-buttons">
+    <button onclick="showProducts()">Explore Products</button>
+    <button onclick="showSellers()">Explore Sellers</button>
+</div>
+
+<div class="container">
+
+    <!-- PRODUCTS WINDOW -->
+    <div id="productsSection" class="grid"></div>
+
+    <!-- SELLERS WINDOW -->
+    <div id="sellersSection" class="grid hidden"></div>
+
+</div>
+
+<script>
+
+// Sample Products
+const products = [
+    {name:"Smartphone", price:"₹15,000", image:"https://via.placeholder.com/300x200"},
+    {name:"Laptop", price:"₹45,000", image:"https://via.placeholder.com/300x200"},
+    {name:"Headphones", price:"₹2,000", image:"https://via.placeholder.com/300x200"},
+    {name:"Shoes", price:"₹3,500", image:"https://via.placeholder.com/300x200"}
+];
+
+// Sample Sellers
+const sellers = [
+    {name:"Tech World", rating:"⭐⭐⭐⭐☆", image:"https://via.placeholder.com/300x200"},
+    {name:"Fashion Hub", rating:"⭐⭐⭐⭐⭐", image:"https://via.placeholder.com/300x200"},
+    {name:"Gadget Store", rating:"⭐⭐⭐☆☆", image:"https://via.placeholder.com/300x200"},
+    {name:"Sports Zone", rating:"⭐⭐⭐⭐☆", image:"https://via.placeholder.com/300x200"}
+];
+
+const productsSection = document.getElementById("productsSection");
+const sellersSection = document.getElementById("sellersSection");
+
+// Load Products
+function loadProducts(){
+    productsSection.innerHTML = "";
+    products.forEach(product=>{
+        productsSection.innerHTML += `
+        <div class="card">
+            <img src="${product.image}">
+            <h3>${product.name}</h3>
+            <p class="price">${product.price}</p>
+            <button onclick="alert('Added to Cart')" 
+            style="padding:8px 15px;background:#10b981;border:none;color:white;border-radius:5px;cursor:pointer;">
+            Add to Cart
+            </button>
+        </div>
+        `;
+    });
+}
+
+// Load Sellers
+function loadSellers(){
+    sellersSection.innerHTML = "";
+    sellers.forEach(seller=>{
+        sellersSection.innerHTML += `
+        <div class="card">
+            <img src="${seller.image}">
+            <h3>${seller.name}</h3>
+            <p class="seller-rating">${seller.rating}</p>
+            <button onclick="alert('Viewing Seller Profile')" 
+            style="padding:8px 15px;background:#f59e0b;border:none;color:white;border-radius:5px;cursor:pointer;">
+            View Seller
+            </button>
+        </div>
+        `;
+    });
+}
+
+// Toggle Functions
+function showProducts(){
+    productsSection.classList.remove("hidden");
+    sellersSection.classList.add("hidden");
+}
+
+function showSellers(){
+    sellersSection.classList.remove("hidden");
+    productsSection.classList.add("hidden");
+}
+
+// Initial Load
+loadProducts();
+loadSellers();
+
+</script>
+
+</body>
+</html>
