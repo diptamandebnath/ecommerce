@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="nav-buttons"> <button onclick="showProducts()">Explore Products</button> <button onclick="showSellers()">Explore Sellers</button> </div>
+
+<header class="top-header">
+    <div class="header-container">
+
+        <div class="left-header">
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <div class="logo">AXE</div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Enter your product name...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="header-icons">
+            <div class="icon">👤</div>
+            <div class="icon">❤️ <span class="count">0</span></div>
+            <div class="icon">🛒 <span class="count">0</span></div>
+        </div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <a href="#">HOME</a>
+        <a href="#">CATEGORIES</a>
+        <a href="#">MEN'S</a>
+        <a href="#">WOMEN'S</a>
+        <a href="#">JEWELRY</a>
+        <a href="#">PERFUME</a>
+        <a href="#">BLOG</a>
+        <a href="#">HOT OFFERS</a>
+    </nav>
+</header>
+
+<div class="banner-container">
+    <div class="banner" id="bannerSlider">
+        <img src="https://htmlburger.com/blog/wp-content/uploads/2024/11/Clickable-Website-Banner-Examples.webp" class="active">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-hJIRXK-AjNCZb4OcKFUMcnNc5aAH5-qgQ&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCgge6mf8nAuCvB8lpj7_UNvfIL0GhC8DAmw&s">
+    </div>
+</div>
+
+<div class="section-title">🛍 Shop by Categories</div>
+
+<div class="categories">
+    <div><img src="https://img.freepik.com/premium-photo/choose-mobile-phone-row-different-smartphones-blue-background-3d_505080-171.jpg"><h5>Mobiles</h5></div>
+    <div><img src="https://img.freepik.com/free-photo/two-young-beautiful-smiling-hipster-female-trendy-white-sweater-coat_158538-16931.jpg"><h5>Fashion</h5></div>
+    <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJoebp0eCkj5NE6ujRC5OjIO8bYLmeKXKysg&s"><h5>Electronics</h5></div>
+    <div><img src="https://img.freepik.com/free-photo/still-life-various-cleaning-products_23-2150829640.jpg"><h5>Home</h5></div>
+    <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeRexCDoSaNbkUqiFJ4jBHU4Q4b6fs8PXrBw&s"><h5>Kitchen</h5></div>
+</div>
+
+
+<div class="section-title">🔥 Today's Deals</div>
+<div class="products-grid">
+    <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71f3BmjCwtL.jpg">
+        <div class="product-info">
+            <h4>Shoes</h4>
+            <div class="price">₹1,999</div>
+        </div>
+    </div>
+</div>
+
+<script>
+let slides = document.querySelectorAll("#bannerSlider img");
+let index = 0;
+
+setInterval(()=>{
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[index].classList.add("active");
+    index = (index + 1) % slides.length;
+},3000);
+
+function toggleMenu(){
+    document.getElementById("navbar").classList.toggle("active");
+}
+
+
+const sellers = [
+  {
+    name: "Tech World",
+    rating: "⭐⭐⭐⭐☆",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymSMtrBAbXMCGO9ejrtD32NZG7TgkFBt3hw&s"
+  },
+  {
+    name: "Fashion Hub",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "https://content.jdmagicbox.com/comp/alandi/q5/020pxx20.xx20.230624200334.w7q5/catalogue/fashion-hub-charholi-budruk-alandi-readymade-garment-retailers-1pz4i3qlro.jpg"
+  },
+  {
+    name: "Gadget Store",
+    rating: "⭐⭐⭐☆☆",
+    image: "https://m.media-amazon.com/images/S/influencer-profile-image-prod/logo/influencer-0820d52a_1643355950476_original._CR377%2C0%2C1293%2C1293_._US500_SCLZZZZZZZ_.jpeg"
+  },
+  {
+    name: "Sports Zone",
+    rating: "⭐⭐⭐⭐☆",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbqKX8aYV105SlIyhH9Iua_UCPEZqQspAdjw&s"
+  }
+];
+
+const sellersSection = document.getElementById("sellersSection");
+
+function loadSellers() {
+  sellersSection.innerHTML = "";
+
+  sellers.forEach(seller => {
+    sellersSection.innerHTML += `
+      <div class="card">
+        <img src="${seller.image}" style="width:100%;height:150px;object-fit:cover;">
+        <h3>${seller.name}</h3>
+        <p style="color:#f59e0b;font-weight:bold;">${seller.rating}</p>
+        <button style="padding:8px 15px;background:#f59e0b;border:none;color:white;border-radius:5px;">
+          View Seller
+        </button>
+      </div>
+    `;
+  });
+}
+
+loadSellers();
+
+function showSellers(){
+    sellersSection.classList.remove("hidden");
+}
+
+
+</script>
+
+</body>
+</html>
